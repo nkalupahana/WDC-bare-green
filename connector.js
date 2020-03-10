@@ -1,3 +1,4 @@
+/* SAMPLE WEB DATA CONNECTOR JS: https://github.com/tableau/webdataconnector/blob/master/Examples/js/earthquakeUSGS.js */
 /* global tableau reqwest */
 
 (function() {
@@ -11,20 +12,8 @@
     // alias: name of data value in Tableau table
     // dataType: Data type of value (see all at https://tableau.github.io/webdataconnector/docs/api_ref.html#webdataconnectorapi.datatypeenum)
     
-    // Here are some example columns to get you started. Take a look at the actual data and fill the rest in!
-    var cols = [{
-            id: "time",
-            alias: "Time",
-            dataType: tableau.dataTypeEnum.string
-        }, {
-            id: "summary",
-            alias: "Summary",
-            dataType: tableau.dataTypeEnum.string
-        }, {
-            id: "precipProbability",
-            alias: "Precipitation Probability",
-            dataType: tableau.dataTypeEnum.float
-        }];
+    // Put column objects in this array! See the documentation above, along with the sample web data connector, for more info.
+    let cols = [];
     
     // Create the connector object
     var connector = tableau.makeConnector();
@@ -47,8 +36,9 @@
     connector.getData = (table, done) => {
         // Get data (gets 7-day hourly forcast (extended); excludes all other data)
         // Format: JSON-P
+        // URL: `https://api.darksky.net/forecast/${API_KEY}/${LOCATION}?extend=hourly&exclude=currently,minutely,daily,alerts,flags`
 
-        // A reqwest call should go here!
+        // A reqwest call should go here! See https://github.com/ded/reqwest for documentation as to how this library works.
     };
 
     // Surface connector to tableau library
